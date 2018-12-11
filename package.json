@@ -1,0 +1,27 @@
+{
+  "name": "element-validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjerabek/element-validator.git"
+  },
+  "keywords": [],
+  "author": "Tomas Jerabek <t.jerabek@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tjerabek/element-validator/issues"
+  },
+  "homepage": "https://github.com/tjerabek/element-validator#readme",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "element-router": "file:../element-router",
+    "gavel": "^2.2.0",
+    "jsonpath": "^1.0.0",
+    "tap": "^12.1.0"
+  }
+}

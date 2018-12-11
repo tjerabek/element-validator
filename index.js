@@ -84,10 +84,12 @@ entries.forEach((item) => {
       const actualResponse = {
         headers: actualResponseHeaders,
         body: response.content.text,
+        statusCode: response.status,
       };
       const expectedResponse = {
         headers: expectedResponseHeaders,
         body: result.response.content,
+        statusCode: result.response.statusCode,
       };
 
       return Promise.all([

@@ -83,7 +83,7 @@ entries.forEach((item) => {
 
       const actualResponse = {
         headers: actualResponseHeaders,
-        body: request.postData.text,
+        body: response.content.text,
       };
       const expectedResponse = {
         headers: expectedResponseHeaders,

@@ -32,7 +32,7 @@ program
 const description = JSON.parse(fs.readFileSync(program.apidescription, 'utf8'));
 const log = JSON.parse(fs.readFileSync(program.log, 'utf8'));
 
-const entries = jp.query(log, '$..entries');
+const entries = jp.query(log, '$..entries.*');
 
 entries.forEach((item) => {
   const request = jp.query(item, '$..request')[0];

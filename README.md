@@ -3,11 +3,11 @@
 ## Instalation
 
 ```
-npm install element-validate -g
+npm install @t.jerabek/element-validator -g
 ```
 
 ## Run
 
 ```
-element-validate -a source/elements.json -l source/log.har
+@t.jerabek/element-validator -a source/elements.json -l source/log.har
 ```

@@ -2,27 +2,19 @@
 const fs = require('fs');
 const jp = require('jsonpath');
 const program = require('commander');
-const elementRouter = require('element-router');
+const elementRouter = require('@t.jerabek/element-router');
 const gavel = require('gavel');
 const tap = require('tap');
 
-const validateRequest = async (actualRequest, expectedRequest) => {
-  return new Promise((resolve, reject) => {
-    gavel.isValid(actualRequest, expectedRequest, 'request', (err, gavelResult) => {
-      if (err) reject(err);
-      else resolve(gavelResult);
-    });
+const validate = async (actual, expected, type) => new Promise((resolve, reject) => {
+  gavel.isValid(actual, expected, type, (err, gavelResult) => {
+    if (err) reject(err);
+    else resolve(gavelResult);
   });
-}
+});
 
-const validateResponse = async (actualResponse, expectedResponse) => {
-  return new Promise((resolve, reject) => {
-    gavel.isValid(actualResponse, expectedResponse, 'response', (err, gavelResult) => {
-      if (err) reject(err);
-      else resolve(gavelResult);
-    });
-  });
-}
+const validateRequest = async (actual, expected) => validate(actual, expected, 'request');
+const validateResponse = async (actual, expected) => validate(actual, expected, 'response');
 
 program
   .option('-a, --apidescription [name]', 'API description to validate')
@@ -34,9 +26,9 @@ const log = JSON.parse(fs.readFileSync(program.log, 'utf8'));
 
 const entries = jp.query(log, '$..entries.*');
 
-entries.forEach((item) => {
-  const request = jp.query(item, '$..request')[0];
-  const response = jp.query(item, '$..response')[0];
+entries.forEach((entry) => {
+  const request = jp.query(entry, '$..request')[0];
+  const response = jp.query(entry, '$..response')[0];
 
   const possibleResults = elementRouter.getResults(description, request.url, request.method);
   if (possibleResults.lenght === 0) {
